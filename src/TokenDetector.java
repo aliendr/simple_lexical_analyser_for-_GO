@@ -4,6 +4,8 @@ import java.util.Stack;
 
 public class TokenDetector {
 
+    int hui = 0;
+
     Stack<String> stack = new Stack<>();
 
     public static void main(String[] args) {
