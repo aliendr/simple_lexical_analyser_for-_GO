@@ -1,23 +1,33 @@
 import java.util.Scanner;
 import java.util.Stack;
 
+import static jdk.nashorn.internal.parser.TokenType.EOF;
+
 
 public class TokenDetector {
-
-    int hui = 0;
 
     Stack<String> stack = new Stack<>();
 
     public static void main(String[] args) {
 
+        String buffer1, buffer2;
         Scanner in = new Scanner(System.in);
         System.out.print("Input a string ");
-        String s = in.next();
-        System.out.println(isKeyword(s));
+
+        buffer1 = in.nextLine();
+        int forward=0;
+
+
+
+
+
+
+
+        System.out.println(buffer1.charAt(0)+buffer1.charAt(1)+buffer1.charAt(2));
 
     }
 
-    //create and write tokens to output in each case
+    //create and write tokens to output in each caseg
     private static boolean isKeyword(String str){
         if (str.length()==2){
             switch (str){
@@ -123,6 +133,7 @@ public class TokenDetector {
     }
 
     private static boolean isOperator(String str){
+
 
         return false;
     }
