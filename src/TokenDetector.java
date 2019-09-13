@@ -27,8 +27,8 @@ public class TokenDetector {
             boolean breakedInLoop = false;
             while (!(buffer1.equals("") && buffer2.equals(""))) {
                 if (currentBuffer == 1) {
-                    if((buffer1.charAt(cursor) == '\r') || (buffer1.charAt(cursor) == ' ') || (buffer1.charAt(cursor) == '\n')){
-                        if(buffer1.charAt(cursor) == '\n')
+                    if ((buffer1.charAt(cursor) == '\r') || (buffer1.charAt(cursor) == ' ') || (buffer1.charAt(cursor) == '\n')) {
+                        if (buffer1.charAt(cursor) == '\n')
                             line++;
                         if (cursor < buffer1.length() - 1)
                             cursor++;
@@ -61,7 +61,7 @@ public class TokenDetector {
                                 lexem += nextChar; // plus second char
                                 if (isOperator(lexem)) { // already minimum 2 symbol operator if true
 
-                                    if(currentBuffer==1){
+                                    if (currentBuffer == 1) {
                                         if (forward != buffer1.length() - 1) {
                                             forward++;
                                             nextChar = buffer1.charAt(forward);
@@ -92,7 +92,7 @@ public class TokenDetector {
                                     }
                                     //third char added
 
-                                    if ((nextChar == '=')&&(lexem.equals(">>") || lexem.equals("<<") || lexem.equals("&^"))) {
+                                    if ((nextChar == '=') && (lexem.equals(">>") || lexem.equals("<<") || lexem.equals("&^"))) {
                                         if (lexem.equals(">>")) {
                                             tokenCreation(">>=", "Operator", line);
                                         } else if (lexem.equals("<<")) {
@@ -126,12 +126,12 @@ public class TokenDetector {
                                     } else { //operator is double
                                         tokenCreation(lexem, "Operator", line);
 
-                                        cursor=forward;
+                                        cursor = forward;
                                     }
                                 } else { // operator is single
-                                    tokenCreation(buffer1.charAt(cursor)+"", "Operator", line);
+                                    tokenCreation(buffer1.charAt(cursor) + "", "Operator", line);
 
-                                    cursor=forward;
+                                    cursor = forward;
                                 }
                                 forward = cursor;
                             } else {
@@ -142,8 +142,8 @@ public class TokenDetector {
                                 nextChar = buffer1.charAt(cursor); // first digit in success
                                 breakedInLoop = false;
 
-                                if(Character.isDigit(nextChar)){
-                                    lexem+=nextChar;
+                                if (Character.isDigit(nextChar)) {
+                                    lexem += nextChar;
 
 
                                     if (currentBuffer == 1) {
@@ -181,7 +181,7 @@ public class TokenDetector {
 
 
                                     // binary literal
-                                    if(lexem.equals("0") && (nextChar=='b' || nextChar=='B')){
+                                    if (lexem.equals("0") && (nextChar == 'b' || nextChar == 'B')) {
                                         lexem += nextChar;
                                         if (currentBuffer == 1) {
                                             if (forward != buffer1.length() - 1) {
@@ -216,7 +216,7 @@ public class TokenDetector {
                                             }
                                         }
 
-                                        while (nextChar=='0' || nextChar=='1') {
+                                        while (nextChar == '0' || nextChar == '1') {
                                             lexem += nextChar;
                                             if (currentBuffer == 1) {
                                                 if (forward != buffer1.length() - 1) {
@@ -253,7 +253,7 @@ public class TokenDetector {
 
                                         }
 
-                                    } else if (lexem.equals("0") && (nextChar=='o' || nextChar=='O')){ // octal literal
+                                    } else if (lexem.equals("0") && (nextChar == 'o' || nextChar == 'O')) { // octal literal
                                         lexem += nextChar;
                                         if (currentBuffer == 1) {
                                             if (forward != buffer1.length() - 1) {
@@ -288,7 +288,7 @@ public class TokenDetector {
                                             }
                                         }
 
-                                        while (nextChar=='0' || nextChar=='1' ||nextChar=='2' ||nextChar=='3' ||nextChar=='4' ||nextChar=='5' ||nextChar=='6' ||nextChar=='7') {
+                                        while (nextChar == '0' || nextChar == '1' || nextChar == '2' || nextChar == '3' || nextChar == '4' || nextChar == '5' || nextChar == '6' || nextChar == '7') {
                                             lexem += nextChar;
                                             if (currentBuffer == 1) {
                                                 if (forward != buffer1.length() - 1) {
@@ -325,7 +325,7 @@ public class TokenDetector {
 
                                         }
                                         //hex literal
-                                    } else if (lexem.equals("0") && (nextChar=='x' || nextChar=='X')){
+                                    } else if (lexem.equals("0") && (nextChar == 'x' || nextChar == 'X')) {
                                         lexem += nextChar;
                                         if (currentBuffer == 1) {
                                             if (forward != buffer1.length() - 1) {
@@ -360,7 +360,7 @@ public class TokenDetector {
                                             }
                                         }
 
-                                        while (Character.isDigit(nextChar) || ((int)nextChar>=65 && (int)nextChar<=70) || ((int)nextChar>=97 && (int)nextChar<=102)) {
+                                        while (Character.isDigit(nextChar) || ((int) nextChar >= 65 && (int) nextChar <= 70) || ((int) nextChar >= 97 && (int) nextChar <= 102)) {
                                             lexem += nextChar;
                                             if (currentBuffer == 1) {
                                                 if (forward != buffer1.length() - 1) {
@@ -396,7 +396,7 @@ public class TokenDetector {
                                             }
 
                                         }
-                                    // decimal
+                                        // decimal
                                     } else {
                                         while (Character.isDigit(nextChar)) {
                                             lexem += nextChar;
@@ -449,7 +449,7 @@ public class TokenDetector {
                                     if (buffer1.charAt(cursor) == '_') {
                                         lexem = "_";
 
-                                        if(currentBuffer==1){
+                                        if (currentBuffer == 1) {
                                             if (forward < buffer1.length() - 1) {
                                                 forward++;
                                                 nextChar = buffer1.charAt(forward);
@@ -542,7 +542,7 @@ public class TokenDetector {
 
                                             while (Character.isLetterOrDigit(nextChar) || nextChar == '_') {
                                                 lexem += nextChar;
-                                                if(currentBuffer==1){
+                                                if (currentBuffer == 1) {
                                                     if (forward < buffer1.length() - 1) {
                                                         forward++;
                                                         nextChar = buffer1.charAt(forward);
@@ -602,10 +602,9 @@ public class TokenDetector {
 
                         }
                     }
-                }
-                else if (currentBuffer == 2) {
-                    if((buffer2.charAt(cursor) == '\r') || (buffer2.charAt(cursor) == ' ') || (buffer2.charAt(cursor) == '\n')){
-                        if(buffer2.charAt(cursor) == '\n')
+                } else if (currentBuffer == 2) {
+                    if ((buffer2.charAt(cursor) == '\r') || (buffer2.charAt(cursor) == ' ') || (buffer2.charAt(cursor) == '\n')) {
+                        if (buffer2.charAt(cursor) == '\n')
                             line++;
                         if (cursor < buffer2.length() - 1)
                             cursor++;
@@ -638,7 +637,7 @@ public class TokenDetector {
                                 lexem += nextChar; // plus second char
                                 if (isOperator(lexem)) { // already minimum 2 symbol operator
 
-                                    if(currentBuffer==1){
+                                    if (currentBuffer == 1) {
                                         if (forward != buffer1.length() - 1) {
                                             forward++;
                                             nextChar = buffer1.charAt(forward);
@@ -669,7 +668,7 @@ public class TokenDetector {
                                     }
                                     //third char added
 
-                                    if ((nextChar == '=')&&(lexem.equals(">>") || lexem.equals("<<") || lexem.equals("&^"))) {
+                                    if ((nextChar == '=') && (lexem.equals(">>") || lexem.equals("<<") || lexem.equals("&^"))) {
                                         if (lexem.equals(">>")) {
                                             tokenCreation(">>=", "Operator", line);
                                         } else if (lexem.equals("<<")) {
@@ -703,12 +702,12 @@ public class TokenDetector {
                                     } else {
                                         tokenCreation(lexem, "Operator", line);
 
-                                        cursor=forward;
+                                        cursor = forward;
                                     }
                                 } else {
-                                    tokenCreation(buffer2.charAt(cursor)+"", "Operator", line);
+                                    tokenCreation(buffer2.charAt(cursor) + "", "Operator", line);
 
-                                    cursor=forward;
+                                    cursor = forward;
                                 }
                                 forward = cursor;
                             } else { // not operator and not delimiter
@@ -884,7 +883,7 @@ public class TokenDetector {
             } //end
 
             for (int i = 0; i < tokens.size(); i++) {
-                System.out.println(tokens.get(i).line+" "+tokens.get(i).value+" "+tokens.get(i).type);
+                System.out.println(tokens.get(i).line + " " + tokens.get(i).value + " " + tokens.get(i).type);
             }
 
         } catch (IOException ex) {
@@ -1093,6 +1092,15 @@ public class TokenDetector {
     }
 
     private static void tokenCreation(String value, String type, int line) {
+        boolean error = true;
+        for (int i = 0; i < value.length(); i++) {
+            if (value.charAt(i) != '_') error = false;
+        }
+        if (error) type = "ERROR";
+        if (type.equals("Integer literal") && value.charAt(value.length() - 1) == '_'){
+            while(value.charAt(value.length() - 1) == '_')
+                value = value.substring(0, value.length() - 1);
+        }
         Token token = new Token(value, type, line);
         tokens.add(token);
     }
@@ -1101,7 +1109,7 @@ public class TokenDetector {
         int i = 0;
         String s = "";
         int c;
-        while (i < 4 && (c = reader.read()) != -1) {
+        while (i < 10 && (c = reader.read()) != -1) {
             s += (char) c;
             i++;
         }
