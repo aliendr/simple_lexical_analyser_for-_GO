@@ -5,10 +5,9 @@ public class Token {
     int line;
     int place;
 
-    Token(String value, String type, int line, int place){
+    Token(String type, String value, int line){
         this.value=value;
         this.type=type;
         this.line=line;
-        this.place=place;
     }
 }
