@@ -270,6 +270,7 @@ public class TokenDetector {
                                                     nextChar = buffer2.charAt(forward);
                                                 }
                                             }
+
                                             if (isKeyword(lexem, line)) {
                                                 tokenCreation(lexem, "keyWord", line);
                                             } else {
