@@ -136,7 +136,6 @@ public class TokenDetector {
                                 forward = cursor;
                             } else {
 
-
                                 // not operator and not delimiter
 
                                 lexem = "";
@@ -145,6 +144,7 @@ public class TokenDetector {
 
                                 if(Character.isDigit(nextChar)){
                                     lexem+=nextChar;
+
 
                                     if (currentBuffer == 1) {
                                         if (forward != buffer1.length() - 1) {
@@ -179,7 +179,9 @@ public class TokenDetector {
                                         }
                                     }
 
-                                    while (Character.isDigit(nextChar) || nextChar == 'b' || nextChar == 'B' || nextChar == 'o' || nextChar == 'O' || nextChar == 'x' || nextChar == 'X' || nextChar == '_') {
+
+                                    // binary literal
+                                    if(lexem.equals("0") && (nextChar=='b' || nextChar=='B')){
                                         lexem += nextChar;
                                         if (currentBuffer == 1) {
                                             if (forward != buffer1.length() - 1) {
@@ -214,14 +216,234 @@ public class TokenDetector {
                                             }
                                         }
 
+                                        while (nextChar=='0' || nextChar=='1') {
+                                            lexem += nextChar;
+                                            if (currentBuffer == 1) {
+                                                if (forward != buffer1.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer1.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 2;
+                                                    buffer2 = fillBuffer(reader);
+                                                    if (buffer2.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer2.charAt(forward);
+
+                                                }
+                                            } else {
+                                                if (forward != buffer2.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer2.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 1;
+                                                    buffer1 = fillBuffer(reader);
+                                                    if (buffer1.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer1.charAt(forward);
+                                                }
+                                            }
+
+                                        }
+
+                                    } else if (lexem.equals("0") && (nextChar=='o' || nextChar=='O')){ // octal literal
+                                        lexem += nextChar;
+                                        if (currentBuffer == 1) {
+                                            if (forward != buffer1.length() - 1) {
+                                                forward++;
+                                                nextChar = buffer1.charAt(forward);
+                                            } else {
+                                                forward = 0;
+                                                currentBuffer = 2;
+                                                buffer2 = fillBuffer(reader);
+                                                if (buffer2.length() == 0) {
+                                                    tokenCreation(lexem, "Integer literal", line);
+                                                    breakedInLoop = true;
+                                                    break;
+                                                }
+                                                nextChar = buffer2.charAt(forward);
+
+                                            }
+                                        } else {
+                                            if (forward != buffer2.length() - 1) {
+                                                forward++;
+                                                nextChar = buffer2.charAt(forward);
+                                            } else {
+                                                forward = 0;
+                                                currentBuffer = 1;
+                                                buffer1 = fillBuffer(reader);
+                                                if (buffer1.length() == 0) {
+                                                    tokenCreation(lexem, "Integer literal", line);
+                                                    breakedInLoop = true;
+                                                    break;
+                                                }
+                                                nextChar = buffer1.charAt(forward);
+                                            }
+                                        }
+
+                                        while (nextChar=='0' || nextChar=='1' ||nextChar=='2' ||nextChar=='3' ||nextChar=='4' ||nextChar=='5' ||nextChar=='6' ||nextChar=='7') {
+                                            lexem += nextChar;
+                                            if (currentBuffer == 1) {
+                                                if (forward != buffer1.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer1.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 2;
+                                                    buffer2 = fillBuffer(reader);
+                                                    if (buffer2.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer2.charAt(forward);
+
+                                                }
+                                            } else {
+                                                if (forward != buffer2.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer2.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 1;
+                                                    buffer1 = fillBuffer(reader);
+                                                    if (buffer1.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer1.charAt(forward);
+                                                }
+                                            }
+
+                                        }
+                                        //hex literal
+                                    } else if (lexem.equals("0") && (nextChar=='x' || nextChar=='X')){
+                                        lexem += nextChar;
+                                        if (currentBuffer == 1) {
+                                            if (forward != buffer1.length() - 1) {
+                                                forward++;
+                                                nextChar = buffer1.charAt(forward);
+                                            } else {
+                                                forward = 0;
+                                                currentBuffer = 2;
+                                                buffer2 = fillBuffer(reader);
+                                                if (buffer2.length() == 0) {
+                                                    tokenCreation(lexem, "Integer literal", line);
+                                                    breakedInLoop = true;
+                                                    break;
+                                                }
+                                                nextChar = buffer2.charAt(forward);
+
+                                            }
+                                        } else {
+                                            if (forward != buffer2.length() - 1) {
+                                                forward++;
+                                                nextChar = buffer2.charAt(forward);
+                                            } else {
+                                                forward = 0;
+                                                currentBuffer = 1;
+                                                buffer1 = fillBuffer(reader);
+                                                if (buffer1.length() == 0) {
+                                                    tokenCreation(lexem, "Integer literal", line);
+                                                    breakedInLoop = true;
+                                                    break;
+                                                }
+                                                nextChar = buffer1.charAt(forward);
+                                            }
+                                        }
+
+                                        while (Character.isDigit(nextChar) || ((int)nextChar>=65 && (int)nextChar<=70) || ((int)nextChar>=97 && (int)nextChar<=102)) {
+                                            lexem += nextChar;
+                                            if (currentBuffer == 1) {
+                                                if (forward != buffer1.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer1.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 2;
+                                                    buffer2 = fillBuffer(reader);
+                                                    if (buffer2.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer2.charAt(forward);
+
+                                                }
+                                            } else {
+                                                if (forward != buffer2.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer2.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 1;
+                                                    buffer1 = fillBuffer(reader);
+                                                    if (buffer1.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer1.charAt(forward);
+                                                }
+                                            }
+
+                                        }
+                                    // decimal
+                                    } else {
+                                        while (Character.isDigit(nextChar)) {
+                                            lexem += nextChar;
+                                            if (currentBuffer == 1) {
+                                                if (forward != buffer1.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer1.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 2;
+                                                    buffer2 = fillBuffer(reader);
+                                                    if (buffer2.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer2.charAt(forward);
+
+                                                }
+                                            } else {
+                                                if (forward != buffer2.length() - 1) {
+                                                    forward++;
+                                                    nextChar = buffer2.charAt(forward);
+                                                } else {
+                                                    forward = 0;
+                                                    currentBuffer = 1;
+                                                    buffer1 = fillBuffer(reader);
+                                                    if (buffer1.length() == 0) {
+                                                        tokenCreation(lexem, "Integer literal", line);
+                                                        breakedInLoop = true;
+                                                        break;
+                                                    }
+                                                    nextChar = buffer1.charAt(forward);
+                                                }
+                                            }
+
+                                        }
                                     }
+
+
                                 }
 
                                 if (breakedInLoop)
                                     break;
                                 if (!lexem.equals("")) {
                                     cursor = forward;
-                                    tokenCreation(lexem, "Integer literal", line); // + proverka na dvoi4nie cifri
+                                    tokenCreation(lexem, "Integer literal", line);
                                 } else {
                                     breakedInLoop = false;
                                     if (buffer1.charAt(cursor) == '_') {
