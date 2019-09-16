@@ -1,5 +1,5 @@
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="simple_lexical_analyser_for_GO_0"></a>simple_lexical_analyser_for_GO</h1>
-<p class="has-line-data" data-line-start="2" data-line-end="3" style="font-size: 14pt">Examples:</p>
+<h2>Examples:</h2>
 <p class="has-line-data" data-line-start="4" data-line-end="5"><b>First:</b></p>
 <p class="has-line-data" data-line-start="6" data-line-end="11">a = 10;<br>
 for(i = 0; i &lt;= 10; i++){<br>
