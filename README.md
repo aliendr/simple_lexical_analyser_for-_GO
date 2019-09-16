@@ -4,7 +4,7 @@
 <p class="has-line-data" data-line-start="6" data-line-end="11">a = 10;<br>
 for(i = 0; i &lt;= 10; i++){<br>
 if(i &gt; 5)<br>
-a–;<br>
+a--;<br>
 }</p>
 <p class="has-line-data" data-line-start="12" data-line-end="13">output:</p>
 <p class="has-line-data" data-line-start="14" data-line-end="42">1 Identifier a<br>
