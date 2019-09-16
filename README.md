@@ -1,12 +1,12 @@
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="simple_lexical_analyser_for_GO_0"></a>simple_lexical_analyser_for_GO</h1>
-<p class="has-line-data" data-line-start="2" data-line-end="3">Examples:</p>
-<p class="has-line-data" data-line-start="4" data-line-end="5">First:</p>
+<p class="has-line-data" data-line-start="2" data-line-end="3" style="font-size: 14pt">Examples:</p>
+<p class="has-line-data" data-line-start="4" data-line-end="5"><b>First:</b></p>
 <p class="has-line-data" data-line-start="6" data-line-end="11">a = 10;<br>
 for(i = 0; i &lt;= 10; i++){<br>
 if(i &gt; 5)<br>
 a--;<br>
 }</p>
-<p class="has-line-data" data-line-start="12" data-line-end="13">output:</p>
+<p class="has-line-data" data-line-start="12" data-line-end="13"><b>output:</b></p>
 <p class="has-line-data" data-line-start="14" data-line-end="42">1 Identifier a<br>
 1 Operator =<br>
 1 Integer literal 10<br>
@@ -35,12 +35,12 @@ a--;<br>
 4 Operator –<br>
 4 Delimiter ;<br>
 5 Delimiter }</p>
-<p class="has-line-data" data-line-start="43" data-line-end="44">Second:</p>
+<p class="has-line-data" data-line-start="43" data-line-end="44"><b>Second:</b></p>
 <p class="has-line-data" data-line-start="45" data-line-end="49">a = 228;<br>
 b = 0b10001;<br>
 c = 0xAFDBC;<br>
 d = 2 * 2 + (4 / 2);</p>
-<p class="has-line-data" data-line-start="50" data-line-end="51">output:</p>
+<p class="has-line-data" data-line-start="50" data-line-end="51"><b>output:</b></p>
 <p class="has-line-data" data-line-start="52" data-line-end="76">1 Identifier a<br>
 1 Operator =<br>
 1 Integer literal 228<br>
